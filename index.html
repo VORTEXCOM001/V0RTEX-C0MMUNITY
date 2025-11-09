@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VORTEX COMMUNITY — Achiziții de Gaming</title>
+
+  <style>
+    :root{
+      /* ------------ TEMA PORTOCALIU DARK ------------ */
+      --bg:#1a0e00;              /* fundal foarte închis portocaliu */
+      --bg-soft:#2a1600;         /* carduri și zone semi-închise */
+      --card:#2f1a00;            /* carduri/opțiuni */
+      --text:#ffffff;            /* scris alb */
+      --muted:#ffddb8;           /* scris alb-portocaliu deschis */
+      --brand:#ff7b00;           /* portocaliu accent */
+      --brand-2:#ffb347;         /* portocaliu luminos */
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:auto;padding:0 16px}
+
+    /* HEADER */
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(26,14,0,.85);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+
+    /* LOGO NOU */
+    .brand-logo-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn{
+      padding:10px 16px;border-radius:10px;
+      background:var(--bg-soft);
+      border:1px solid rgba(255,255,255,.15);
+      cursor:pointer;
+      transition:.15s;
+    }
+    .btn.primary{
+      background:var(--brand);
+      border-color:var(--brand-2);
+      color:white;
+      font-weight:bold;
+    }
+    .btn:hover{border-color:var(--brand)}
+
+    .icon-btn{
+      padding:10px;border-radius:12px;background:var(--bg-soft);
+      border:1px solid rgba(255,255,255,.15);cursor:pointer;
+      position: relative;
+    }
+    .badge{
+      position:absolute;top:-6px;right:-6px;background:var(--brand);
+      color:white;font-size:11px;padding:2px 6px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.4)
+    }
+
+    /* HERO */
+    .hero{
+      margin:20px 0;padding:28px;border-radius:20px;
+      background:linear-gradient(135deg,#2a1600,#1a0e00 60%);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 0 20px rgba(0,0,0,.4);
+    }
+
+    .hero h1{margin:0;font-size:32px}
+    .hero p{color:var(--muted)}
+
+    /* SECTIONS */
+    .section{margin:30px 0}
+    .section h2{margin:0 0 10px}
+
+    /* CARDS */
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.15);
+      padding:14px;border-radius:14px;color:white;
+    }
+
+    .pill{
+      background:rgba(255,136,0,.2);border:1px solid rgba(255,136,0,.4);
+      padding:4px 10px;border-radius:20px;font-size:12px;color:var(--brand-2);
+    }
+
+    /* GRID */
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+
+    /* TABLE */
+    table{
+      width:100%;border-collapse:separate;
+      border-spacing:0;background:var(--card);
+      border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden;
+    }
+    th,td{padding:12px;border-bottom:1px solid rgba(255,255,255,.1)}
+    th{background:rgba(255,255,255,.05);color:var(--muted);text-align:left}
+
+    /* FOOTER */
+    .footer{
+      margin-top:40px;border-top:1px solid rgba(255,255,255,.12);
+      padding-top:16px;color:var(--muted);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <!-- LOGO NOI PUS AICI -->
+        <img src="logo.png.png" alt="Logo VXC" class="brand-logo-img">
+        VORTEX COMMUNITY
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank">💬 Discord</a>
+        <button class="icon-btn">
+          🔔
+          <span class="badge">3</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Bine ai venit în VORTEX COMMUNITY</h1>
+      <p>Comunitatea dedicată achizițiilor de gaming — unde recomandările sunt reale, iar discuțiile sunt făcute de gameri pentru gameri.</p>
+
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+        <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank">Intră pe Discord</a>
+        <a class="btn" href="#ghiduri">Vezi ghidurile</a>
+      </div>
+    </section>
+
+    <!-- GHIDURI -->
+    <section id="ghiduri" class="section">
+      <h2>Ghiduri de achiziții gaming</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Alegerea jocurilor potrivite</h3>
+          <p class="muted">Cum alegi titlurile potrivite în funcție de stil, timp, buget și nivel.</p>
+        </div>
+        <div class="card">
+          <h3>Reduceri, oferte și bundle-uri</h3>
+          <p class="muted">Tot ce trebuie să știi pentru a prinde prețuri bune la jocuri.</p>
+        </div>
+        <div class="card">
+          <h3>Optimizarea experienței de gaming</h3>
+          <p class="muted">Setări și trucuri pentru lag mai mic și FPS stabil.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFERTE -->
+    <section class="section">
+      <h2>Oferte recomandate de comunitate</h2>
+      <p class="muted">Actualizabile manual — pune propriile tale oferte aici.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Ofertă</th>
+            <th>Magazin</th>
+            <th>Valabil până</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Game Pass 3 luni promo</td>
+            <td>Microsoft Store</td>
+            <td>31 Dec</td>
+            <td><a class="pill" href="#">Deschide</a></td>
+          </tr>
+          <tr>
+            <td>Bundle Action Pack</td>
+            <td>Humble</td>
+            <td>15 Dec</td>
+            <td><a class="pill" href="#">Deschide</a></td>
+          </tr>
+          <tr>
+            <td>Gift Card -10%</td>
+            <td>Retailer</td>
+            <td>Permanent</td>
+            <td><a class="pill" href="#">Deschide</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- DISCORD -->
+    <section class="section">
+      <h2>Alătură-te pe Discord</h2>
+      <p class="muted">Discuții zilnice, recomandări, oferte și ajutor în timp real.</p>
+
+      <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank">💬 Intră pe server</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <small>© <span id="year"></span> VORTEX COMMUNITY • Toate drepturile rezervate</small>
+    </footer>
+
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
