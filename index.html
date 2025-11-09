@@ -20,6 +20,7 @@
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
     a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
     .container{max-width:1200px;margin:auto;padding:0 16px}
 
     /* HEADER */
@@ -33,7 +34,7 @@
 
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
 
-    /* LOGO NOU */
+    /* LOGO (folosește numele tău real; aici ai spus că e logo.PNG.png) */
     .brand-logo-img {
       width: 32px;
       height: 32px;
@@ -59,8 +60,7 @@
 
     .icon-btn{
       padding:10px;border-radius:12px;background:var(--bg-soft);
-      border:1px solid rgba(255,255,255,.15);cursor:pointer;
-      position: relative;
+      border:1px solid rgba(255,255,255,.15);cursor:pointer;position:relative;
     }
     .badge{
       position:absolute;top:-6px;right:-6px;background:var(--brand);
@@ -68,14 +68,29 @@
       border:1px solid rgba(255,255,255,.4)
     }
 
-    /* HERO */
+    /* HERO BANNER (IMAGINEA DEASUPRA CHENARULUI) */
+    .hero-banner{
+      margin:18px 0 10px;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 8px 30px rgba(0,0,0,.35);
+      background:#0f0900;
+    }
+    .hero-banner img{
+      width:100%;
+      height:min(360px, 38vh);
+      object-fit:cover;
+    }
+
+    /* HERO (chenarul “Bine ai venit…”) */
     .hero{
-      margin:20px 0;padding:28px;border-radius:20px;
+      margin:12px 0 20px;
+      padding:28px;border-radius:20px;
       background:linear-gradient(135deg,#2a1600,#1a0e00 60%);
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 0 20px rgba(0,0,0,.4);
     }
-
     .hero h1{margin:0;font-size:32px}
     .hero p{color:var(--muted)}
 
@@ -112,7 +127,6 @@
       margin-top:40px;border-top:1px solid rgba(255,255,255,.12);
       padding-top:16px;color:var(--muted);
     }
-
   </style>
 </head>
 
@@ -122,14 +136,14 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <!-- LOGO NOI PUS AICI -->
-        <img src="logo.png.png" alt="Logo VXC" class="brand-logo-img">
+        <!-- dacă fișierul tău chiar se numește "logo.PNG.png", lasă așa -->
+        <img src="logo.PNG.png" alt="Logo VXC" class="brand-logo-img">
         VORTEX COMMUNITY
       </div>
 
       <div style="display:flex;gap:10px">
-        <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank">💬 Discord</a>
-        <button class="icon-btn">
+        <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank" rel="noopener">💬 Discord</a>
+        <button class="icon-btn" aria-label="Notificări">
           🔔
           <span class="badge">3</span>
         </button>
@@ -139,13 +153,18 @@
 
   <main class="container">
 
+    <!-- ✅ IMAGINEA TA – DEASUPRA CHENARULUI (HERO) -->
+    <figure class="hero-banner" aria-label="VORTEX COMMUNITY banner">
+      <img src="banner.jpg.jpg" alt="VORTEX COMMUNITY Banner">
+    </figure>
+
     <!-- HERO -->
     <section class="hero">
       <h1>Bine ai venit în VORTEX COMMUNITY</h1>
       <p>Comunitatea dedicată achizițiilor de gaming — unde recomandările sunt reale, iar discuțiile sunt făcute de gameri pentru gameri.</p>
 
       <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
-        <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank">Intră pe Discord</a>
+        <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank" rel="noopener">Intră pe Discord</a>
         <a class="btn" href="#ghiduri">Vezi ghidurile</a>
       </div>
     </section>
@@ -157,15 +176,15 @@
       <div class="grid">
         <div class="card">
           <h3>Alegerea jocurilor potrivite</h3>
-          <p class="muted">Cum alegi titlurile potrivite în funcție de stil, timp, buget și nivel.</p>
+          <p style="color:var(--muted)">Cum alegi titlurile potrivite în funcție de stil, timp, buget și nivel.</p>
         </div>
         <div class="card">
           <h3>Reduceri, oferte și bundle-uri</h3>
-          <p class="muted">Tot ce trebuie să știi pentru a prinde prețuri bune la jocuri.</p>
+          <p style="color:var(--muted)">Tot ce trebuie să știi pentru a prinde prețuri bune la jocuri.</p>
         </div>
         <div class="card">
           <h3>Optimizarea experienței de gaming</h3>
-          <p class="muted">Setări și trucuri pentru lag mai mic și FPS stabil.</p>
+          <p style="color:var(--muted)">Setări și trucuri pentru lag mai mic și FPS stabil.</p>
         </div>
       </div>
     </section>
@@ -173,9 +192,9 @@
     <!-- OFERTE -->
     <section class="section">
       <h2>Oferte recomandate de comunitate</h2>
-      <p class="muted">Actualizabile manual — pune propriile tale oferte aici.</p>
+      <p style="color:var(--muted)">Actualizabile manual — pune propriile tale oferte aici.</p>
 
-      <table>
+      <table aria-label="Oferte comunitate">
         <thead>
           <tr>
             <th>Ofertă</th>
@@ -189,19 +208,19 @@
             <td>Game Pass 3 luni promo</td>
             <td>Microsoft Store</td>
             <td>31 Dec</td>
-            <td><a class="pill" href="#">Deschide</a></td>
+            <td><a class="pill" href="#" target="_blank" rel="noopener">Deschide</a></td>
           </tr>
           <tr>
             <td>Bundle Action Pack</td>
             <td>Humble</td>
             <td>15 Dec</td>
-            <td><a class="pill" href="#">Deschide</a></td>
+            <td><a class="pill" href="#" target="_blank" rel="noopener">Deschide</a></td>
           </tr>
           <tr>
             <td>Gift Card -10%</td>
             <td>Retailer</td>
             <td>Permanent</td>
-            <td><a class="pill" href="#">Deschide</a></td>
+            <td><a class="pill" href="#" target="_blank" rel="noopener">Deschide</a></td>
           </tr>
         </tbody>
       </table>
@@ -210,9 +229,9 @@
     <!-- DISCORD -->
     <section class="section">
       <h2>Alătură-te pe Discord</h2>
-      <p class="muted">Discuții zilnice, recomandări, oferte și ajutor în timp real.</p>
+      <p style="color:var(--muted)">Discuții zilnice, recomandări, oferte și ajutor în timp real.</p>
 
-      <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank">💬 Intră pe server</a>
+      <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank" rel="noopener">💬 Intră pe server</a>
     </section>
 
     <!-- FOOTER -->
@@ -228,3 +247,4 @@
 
 </body>
 </html>
+
