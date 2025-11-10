@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GTA Hub — Demo local</title>
+<meta name="description" content="Demo local: detalii joc, preț orientativ, checkout mock și download demo (placeholder).">
+<style>
+  :root{
+    --bg:#0a0014; --bg-soft:#15002a; --card:#1f003d; --text:#fff;
+    --muted:#ffb7ff; --brand:#ff00cc; --brand-2:#ff66e0; --ring:rgba(255,0,204,.25);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1200px;margin:auto;padding:0 16px}
+  header{position:sticky;top:0;z-index:50;background:rgba(10,0,20,.85);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.1)}
+  .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+  .btn{padding:10px 14px;border-radius:10px;background:var(--bg-soft);border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:.15s;color:var(--text)}
+  .btn:hover{border-color:var(--brand)}
+  .btn.primary{background:var(--brand);border-color:var(--brand-2);color:#1a0e00;font-weight:bold}
+  .btn.ghost{background:transparent}
+  .btn.sm{padding:8px 10px;border-radius:8px;font-size:14px}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);font-size:12px}
+  .chip.active{border-color:var(--brand);box-shadow:0 0 0 3px var(--ring)}
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0}
+  .input{background:var(--bg-soft);color:var(--text);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:10px 12px;outline:none;min-width:220px}
+  .input:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--ring)}
+  .select{appearance:none}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:18px 0 30px}
+  .card{background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .thumb{position:relative;background:linear-gradient(135deg,#2a0a48,#120022);aspect-ratio:16/9}
+  .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .badge{position:absolute;left:10px;top:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);padding:4px 8px;border-radius:999px;font-size:12px}
+  .meta{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .title{font-weight:700;line-height:1.2}
+  .muted{color:var(--muted)}
+  .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .tag{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06)}
+  .row{display:flex;gap:8px;align-items:center;justify-content:space-between}
+  .stars{letter-spacing:1px}
+  .footer{display:flex;justify-content:center;padding:24px;color:var(--muted);border-top:1px solid rgba(255,255,255,.1)}
+  .empty{padding:20px;border:1px dashed rgba(255,255,255,.2);border-radius:12px;color:var(--muted);text-align:center}
+
+  /* --- Modals --- */
+  .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:100}
+  .backdrop.show{display:flex}
+  .modal{width:min(960px,95vw);background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .modal-title{font-weight:800}
+  .modal-body{padding:16px}
+  .details-grid{display:grid;grid-template-columns:360px 1fr;gap:16px}
+  .details-grid .thumb{border-radius:12px;overflow:hidden}
+  .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin:.5rem 0}
+  .modal-foot{display:flex;gap:10px;justify-content:flex-end;padding:14px 16px;border-top:1px solid rgba(255,255,255,.08)}
+  .price-range{font-weight:700}
+  @media (max-width:720px){ .details-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">V0RT€X C0MMUNITY — GTA Hub (DEMO LOCAL)</div>
+    <div style="display:flex;gap:8px">
+      <button class="btn ghost" onclick="alert('Este doar un demo local 😊')">ℹ️ Info</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section style="margin:18px 0 6px">
+    <h1 style="margin:0 0 6px">Grand Theft Auto — demo de detalii + cumpărare mock</h1>
+    <p class="muted" style="margin:0">Prețuri orientative: <b>€15–€18</b>. Acesta este un demo local; nu vinde și nu distribuie jocuri.</p>
+  </section>
+
+  <!-- TOOLBAR -->
+  <div class="toolbar" role="region" aria-label="Filtre și căutare">
+    <input id="q" class="input" type="search" placeholder="Caută (ex: San Andreas, Vice City, Online)" aria-label="Caută joc" />
+    <select id="sort" class="input select" aria-label="Sortează">
+      <option value="trending">Sortează: Popular</option>
+      <option value="rating">Sortează: Rating</option>
+      <option value="alpha">Sortează: Alfabetic</option>
+      <option value="new">Sortează: Noutăți</option>
+    </select>
+    <div style="display:flex;gap:8px;flex-wrap:wrap" aria-label="Platforme">
+      <button class="chip" data-platform="PC">PC</button>
+      <button class="chip" data-platform="PlayStation">PlayStation</button>
+      <button class="chip" data-platform="Xbox">Xbox</button>
+      <button class="chip" data-platform="Switch">Switch</button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap" aria-label="Tipuri">
+      <button class="chip" data-genre="Story">Story</button>
+      <button class="chip" data-genre="Online">Online</button>
+      <button class="chip" data-genre="Roleplay">Roleplay</button>
+      <button class="chip" data-genre="Classic">Classic</button>
+      <button class="chip" data-genre="Definitive">Definitive</button>
+    </div>
+    <button id="clear" class="btn sm" type="button">Resetează</button>
+  </div>
+
+  <div id="grid" class="grid" aria-live="polite"></div>
+  <div id="empty" class="empty" style="display:none">Nicio potrivire. Încearcă alte filtre sau curăță căutarea.</div>
+
+  <footer class="footer">
+    <small>© <span id="year"></span> VORTEX COMMUNITY • Demo local</small>
+  </footer>
+</main>
+
+<!-- Modal DETALII -->
+<div id="details-backdrop" class="backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <div class="modal-title" id="details-title">Detalii joc</div>
+      <button class="btn sm ghost" onclick="closeDetails()" aria-label="Închide">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="details-grid">
+        <div class="thumb"><img id="details-cover" alt="Copertă joc"></div>
+        <div>
+          <p class="muted" id="details-blurb"></p>
+          <div class="modal-tags" id="details-platforms"></div>
+          <div class="modal-tags" id="details-genres"></div>
+          <p class="price-range">Preț: <span id="details-price"></span></p>
+          <small class="muted">* Preț orientativ pentru DEMO; nu reprezintă o ofertă comercială.</small>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" onclick="closeDetails()">Închide</button>
+      <button id="btn-buy" class="btn primary">Cumpără</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal CHECKOUT (mock) -->
+<div id="checkout-backdrop" class="backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <div class="modal-title">Checkout demo</div>
+      <button class="btn sm ghost" onclick="closeCheckout()" aria-label="Închide">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="checkout-summary" style="margin-bottom:12px"></div>
+      <div style="display:grid;gap:10px;grid-template-columns:1fr 1fr">
+        <input class="input" placeholder="Nume pe card (demo)" />
+        <input class="input" placeholder="Număr card (demo)" />
+        <input class="input" placeholder="Expirare (MM/YY)" />
+        <input class="input" placeholder="CVC" />
+      </div>
+      <p class="muted" style="margin-top:10px">Acesta este un formular fictiv doar pentru demonstrație.</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" onclick="closeCheckout()">Anulează</button>
+      <button id="btn-pay" class="btn primary">Plătește</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal SUCCES + Download DEMO -->
+<div id="success-backdrop" class="backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <div class="modal-title">Mulțumim! 🎉</div>
+      <button class="btn sm ghost" onclick="closeSuccess()" aria-label="Închide">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>Plata demo a fost procesată. Poți descărca <b>fișierul demonstrativ</b> (nu jocul). </p>
+      <p><i>Într-un site real, aici ai trimite utilizatorul către magazinul oficial sau către livrarea produsului propriu (legal).</i></p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" onclick="closeSuccess()">OK</button>
+      <button id="btn-download" class="btn primary">Descarcă demo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // === Date jocuri (exemplu) ===
+  const GAMES = [
+    { id:'gta-v', title:'GTA V', cover:'covers/gtav.jpg',
+      genres:['Story','Classic'], platforms:['PC','PlayStation','Xbox'],
+      rating:4.9, released:'2013-09-17', trending:95,
+      priceMin:15, priceMax:18, sku:'GTA-V-STD',
+      blurb:'Los Santos și Blaine County — campanie cinematică cu Michael, Franklin și Trevor.' },
+    { id:'gta-san-andreas', title:'GTA: San Andreas', cover:'covers/gtasa.jpg',
+      genres:['Story','Classic'], platforms:['PC','PlayStation','Xbox','Switch'],
+      rating:4.8, released:'2004-10-26', trending:92,
+      priceMin:7, priceMax:9, sku:'GTA-SA-STD',
+      blurb:'CJ se întoarce în Los Santos — o legendă open-world.' },
+    { id:'gta-iii', title:'GTA III', cover:'covers/gta3.jpg',
+      genres:['Story','Classic'], platforms:['PC','PlayStation','Xbox','Switch'],
+      rating:4.3, released:'2001-10-22', trending:75,
+      priceMin:3, priceMax:6, sku:'GTA-III-STD',
+      blurb:'Startul erei 3D din Liberty City — open-world revoluționar.' },
+    { id:'gta-iv', title:'GTA IV', cover:'covers/gtaiv.jpg',
+      genres:['Story','Classic'], platforms:['PC','PlayStation','Xbox'],
+      rating:4.6, released:'2008-04-29', trending:80,
+      priceMin:10, priceMax:12, sku:'GTA-IV-STD',
+      blurb:'Liberty City — povestea lui Niko Bellic într-un oraș dur și realist.' },
+    { id:'gta-vice-city', title:'GTA: Vice City', cover:'covers/gtavc.jpg',
+      genres:['Story','Classic'], platforms:['PC','PlayStation','Xbox','Switch'],
+      rating:4.7, released:'2002-10-27', trending:90,
+      priceMin:5, priceMax:7, sku:'GTA-VC-STD',
+      blurb:'Anii ’80, neon și soundtrack iconic — Tommy Vercetti.' }
+  ];
+
+  const state = { q:'', sort:'trending', platforms:new Set(), genres:new Set() };
+  const els = {
+    grid:document.getElementById('grid'), empty:document.getElementById('empty'),
+    q:document.getElementById('q'), sort:document.getElementById('sort'),
+    clear:document.getElementById('clear')
+  };
+
+  els.q.addEventListener('input', e=>{ state.q = e.target.value.toLowerCase().trim(); render(); });
+  els.sort.addEventListener('change', e=>{ state.sort = e.target.value; render(); });
+  els.clear.addEventListener('click', ()=>{
+    state.q=''; state.sort='trending'; state.platforms.clear(); state.genres.clear();
+    els.q.value=''; els.sort.value='trending';
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    render();
+  });
+
+  document.querySelectorAll('[data-platform]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const p=btn.getAttribute('data-platform');
+      if(state.platforms.has(p)){state.platforms.delete(p); btn.classList.remove('active');}
+      else {state.platforms.add(p); btn.classList.add('active');}
+      render();
+    });
+  });
+  document.querySelectorAll('[data-genre]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const g=btn.getAttribute('data-genre');
+      if(state.genres.has(g)){state.genres.delete(g); btn.classList.remove('active');}
+      else {state.genres.add(g); btn.classList.add('active');}
+      render();
+    });
+  });
+
+  function sortFn(a,b){
+    switch(state.sort){
+      case 'rating': return b.rating-a.rating;
+      case 'alpha': return a.title.localeCompare(b.title);
+      case 'new': return new Date(b.released)-new Date(a.released);
+      default: return b.trending-a.trending;
+    }
+  }
+  function matchesFilters(g){
+    const byQ=!state.q||g.title.toLowerCase().includes(state.q)||g.blurb.toLowerCase().includes(state.q);
+    const byPlat=state.platforms.size===0||[...state.platforms].every(p=>g.platforms.includes(p));
+    const byGenre=state.genres.size===0||[...state.genres].every(gg=>g.genres.includes(gg));
+    return byQ&&byPlat&&byGenre;
+  }
+  function starRow(r){ const full=Math.floor(r), half=r-full>=0.5; let out=''; for(let i=0;i<full;i++) out+='★'; if(half) out+='☆'; while(out.length<5) out+='☆'; return out; }
+
+  function gameCard(g){
+    const plat = g.platforms.map(p=>`<span class="tag">${p}</span>`).join(' ');
+    const gen = g.genres.map(t=>`<span class="tag">${t}</span>`).join(' ');
+    const rel = new Date(g.released).toLocaleDateString('ro-RO');
+    const price = (g.priceMin!=null&&g.priceMax!=null) ? `€${g.priceMin}–€${g.priceMax}` : '€—';
+
+    return `
+      <article class="card" aria-label="${g.title}">
+        <div class="thumb">
+          <img loading="lazy" width="1280" height="720" src="${g.cover}" alt="Copertă ${g.title}"
+               onerror="this.closest('.thumb').classList.add('no-img'); this.remove()">
+          <span class="badge">${g.trending >= 85 ? '🔥 Popular' : '🎮 GTA'}</span>
+        </div>
+        <div class="meta">
+          <div class="row"><div class="title">${g.title}</div><div class="stars" title="Rating ${g.rating}/5">${starRow(g.rating)}</div></div>
+          <div class="muted" style="font-size:13px">Lansat: ${rel}</div>
+          <p class="muted" style="margin:0">${g.blurb}</p>
+          <div class="tags">${plat}</div>
+          <div class="tags">${gen}</div>
+          <div class="row" style="margin-top:auto">
+            <a class="btn sm" href="#" onclick="openDetails('${g.id}');return false;">Detalii</a>
+            <span class="muted" style="font-size:13px">Preț demo: ${price}</span>
+          </div>
+        </div>
+      </article>`;
+  }
+
+  function render(){
+    const list = GAMES.filter(matchesFilters).sort(sortFn);
+    els.grid.innerHTML = list.map(gameCard).join('');
+    els.empty.style.display = list.length? 'none':'block';
+  }
+
+  // ===== Modal logic =====
+  const $ = id => document.getElementById(id);
+  let currentGame = null;
+
+  function openDetails(id){
+    currentGame = GAMES.find(x=>x.id===id);
+    if(!currentGame) return;
+    $('details-title').textContent = currentGame.title;
+    $('details-cover').src = currentGame.cover || '';
+    $('details-cover').alt = `Copertă ${currentGame.title}`;
+    $('details-blurb').textContent = currentGame.blurb || '';
+    $('details-platforms').innerHTML = (currentGame.platforms||[]).map(p=>`<span class="tag">${p}</span>`).join(' ');
+    $('details-genres').innerHTML = (currentGame.genres||[]).map(t=>`<span class="tag">${t}</span>`).join(' ');
+    $('details-price').textContent = (currentGame.priceMin!=null && currentGame.priceMax!=null)
+      ? `€${currentGame.priceMin}–€${currentGame.priceMax}` : 'N/A';
+
+    $('details-backdrop').classList.add('show');
+    $('details-backdrop').setAttribute('aria-hidden','false');
+  }
+  function closeDetails(){
+    $('details-backdrop').classList.remove('show');
+    $('details-backdrop').setAttribute('aria-hidden','true');
+  }
+  $('btn-buy').addEventListener('click', ()=>{
+    if(!currentGame) return;
+    closeDetails();
+    $('checkout-summary').innerHTML = `
+      <div class="row" style="justify-content:space-between">
+        <div>
+          <div style="font-weight:700">${currentGame.title}</div>
+          <div class="muted">SKU: ${currentGame.sku||currentGame.id.toUpperCase()}</div>
+        </div>
+        <div class="price-range">€${currentGame.priceMin}–€${currentGame.priceMax}</div>
+      </div>`;
+    $('checkout-backdrop').classList.add('show');
+    $('checkout-backdrop').setAttribute('aria-hidden','false');
+  });
+  function closeCheckout(){
+    $('checkout-backdrop').classList.remove('show');
+    $('checkout-backdrop').setAttribute('aria-hidden','true');
+  }
+  $('btn-pay').addEventListener('click', ()=>{
+    // mock "procesare"
+    closeCheckout();
+    $('success-backdrop').classList.add('show');
+    $('success-backdrop').setAttribute('aria-hidden','false');
+  });
+  function closeSuccess(){
+    $('success-backdrop').classList.remove('show');
+    $('success-backdrop').setAttribute('aria-hidden','true');
+  }
+  // Generate a local demo file (NOT the game!)
+  $('btn-download').addEventListener('click', ()=>{
+    const title = currentGame ? currentGame.title : 'GTA Demo';
+    const sku = currentGame ? (currentGame.sku||currentGame.id) : 'demo';
+    const text = [
+      `VORTEX COMMUNITY — DEMO DOWNLOAD`,
+      `Produs: ${title} (SKU: ${sku})`,
+      `Acesta este un fișier demonstrativ (nu jocul).`,
+      `Într-un site real ai livra conținut propriu sau ai redirecționa către magazinul oficial.`,
+      `Data: ${new Date().toLocaleString()}`
+    ].join('\n');
+    const blob = new Blob([text], {type:'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `${sku}-DEMO.txt`;
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  // Close modals on Esc / click outside
+  ['details-backdrop','checkout-backdrop','success-backdrop'].forEach(id=>{
+    $(id).addEventListener('click', (e)=>{ if(e.target.id===id) { 
+      if(id==='details-backdrop') closeDetails();
+      if(id==='checkout-backdrop') closeCheckout();
+      if(id==='success-backdrop') closeSuccess();
+    }});
+  });
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape'){
+      closeDetails(); closeCheckout(); closeSuccess();
+    }
+  });
+
+  render();
+</script>
+</body>
+</html>
