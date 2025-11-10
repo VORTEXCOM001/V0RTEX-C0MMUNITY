@@ -200,12 +200,12 @@
       <div class="accordion" role="tablist" aria-label="Lista ghiduri">
         <!-- Ghid 1 -->
         <div class="acc-item" id="acc-g1">
-          <!-- Titlul deschide modalul Ghid Complet -->
-          <button class="acc-head" role="tab" aria-controls="g1" aria-expanded="false"
-                  onclick="openModal('guideModal')">
-            🎮 Alegerea jocurilor potrivite
-            <span class="acc-caret">▸</span>
-          </button>
+          <!-- Titlul deschide modelul Ghid Complet -->
+          <a class="acc-head" role="tab" aria-controls="g1" aria-expanded="false"
+   href="jocuri.html.html" target="_blank" rel="noopener">
+  🎮 Alegerea jocurilor potrivite
+  <span class="acc-caret">↗</span>
+</a>
           <div class="acc-body" id="g1" role="region" aria-labelledby="acc-g1">
             <p class="muted">Checklist rapid: genurile preferate, timpul pe sesiune, dacă joci solo/co-op, buget lunar, platformă, crossplay, rejucabilitate.</p>
             <ul>
@@ -291,20 +291,13 @@
       </table>
     </section>
 
-    <!-- DISCORD -->
-    <section class="section">
-      <h2>Alătură-te pe Discord</h2>
-      <p class="muted">Discuții zilnice, recomandări, oferte și ajutor în timp real.</p>
-      <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank" rel="noopener">💬 Intră pe server</a>
-    </section>
-
     <!-- FOOTER -->
     <footer class="footer">
       <small>© <span id="year"></span> VORTEX COMMUNITY • Copyright</small>
     </footer>
   </main>
 
-  <!-- MODAL: GHID COMPLET -->
+  <!-- MODEL: GHID COMPLET -->
   <div id="guideModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
     <div class="modal">
       <header>
@@ -464,7 +457,7 @@
       document.querySelector('#acc-g1')?.classList.add('open');
     }
 
-    /* --------- MODALS --------- */
+    /* --------- MODELS --------- */
     function openModal(id){
       document.getElementById(id)?.classList.add('show');
       document.addEventListener('keydown', escClose);
