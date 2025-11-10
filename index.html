@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VORTEX COMMUNITY — Achiziții de Gaming</title>
+  <title>VORTEX COMMUNITY — Gaming</title>
 
   <style>
     :root{
-      /* ------------ TEMA PORTOCALIU DARK ------------ */
-      --bg:#1a0e00;              /* fundal foarte închis portocaliu */
-      --bg-soft:#2a1600;         /* carduri și zone semi-închise */
-      --card:#2f1a00;            /* carduri/opțiuni */
-      --text:#ffffff;            /* scris alb */
-      --muted:#ffddb8;           /* scris alb-portocaliu deschis */
-      --brand:#ff7b00;           /* portocaliu accent */
-      --brand-2:#ffb347;         /* portocaliu luminos */
+      --bg:#0a0014;        /* mov foarte închis */
+      --bg-soft:#15002a;
+      --card:#1f003d;
+      --text:#ffffff;
+      --muted:#ffb7ff;     /* roz pal */
+      --brand:#ff00cc;     /* magenta neon */
+      --brand-2:#ff66e0;   /* magenta deschis */
+      --ring:rgba(255,0,204,.25);
     }
 
     *{box-sizing:border-box}
@@ -26,71 +26,44 @@
     /* HEADER */
     header{
       position:sticky;top:0;z-index:50;
-      background:rgba(26,14,0,.85);
+      background:rgba(10,0,20,.85);
       backdrop-filter:blur(6px);
       border-bottom:1px solid rgba(255,255,255,.1);
     }
     .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
-
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
-
-    /* LOGO (folosește numele tău real; aici ai spus că e logo.PNG.png) */
-    .brand-logo-img {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.25);
-    }
+    .brand-logo-img{width:32px;height:32px;border-radius:10px;object-fit:cover;border:2px solid rgba(255,255,255,.25)}
 
     .btn{
-      padding:10px 16px;border-radius:10px;
-      background:var(--bg-soft);
-      border:1px solid rgba(255,255,255,.15);
-      cursor:pointer;
-      transition:.15s;
+      padding:10px 16px;border-radius:10px;background:var(--bg-soft);
+      border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:.15s;color:var(--text)
     }
-    .btn.primary{
-      background:var(--brand);
-      border-color:var(--brand-2);
-      color:white;
-      font-weight:bold;
-    }
+    .btn.primary{background:var(--brand);border-color:var(--brand-2);color:#1a0e00;font-weight:bold}
     .btn:hover{border-color:var(--brand)}
 
-    .icon-btn{
-      padding:10px;border-radius:12px;background:var(--bg-soft);
-      border:1px solid rgba(255,255,255,.15);cursor:pointer;position:relative;
-    }
-    .badge{
-      position:absolute;top:-6px;right:-6px;background:var(--brand);
-      color:white;font-size:11px;padding:2px 6px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.4)
-    }
+    .icon-btn{padding:10px;border-radius:12px;background:var(--bg-soft);border:1px solid rgba(255,255,255,.15);cursor:pointer;position:relative}
+    .badge{position:absolute;top:-6px;right:-6px;background:var(--brand);color:white;font-size:11px;padding:2px 6px;border-radius:999px;border:1px solid rgba(255,255,255,.4)}
 
-    /* HERO BANNER (IMAGINEA DEASUPRA CHENARULUI) */
-    .hero-banner{
-      margin:18px 0 10px;
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 8px 30px rgba(0,0,0,.35);
-      background:#0f0900;
+    /* DROPDOWN NOTIFICATIONS */
+    .dropdown{
+      position:absolute;right:0;top:48px;min-width:320px;max-width:92vw;
+      background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:14px;
+      box-shadow:0 12px 30px rgba(0,0,0,.5);display:none;overflow:hidden
     }
-    .hero-banner img{
-      width:100%;
-      height:min(360px, 38vh);
-      object-fit:cover;
-    }
+    .dropdown.show{display:block}
+    .dd-head{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.1)}
+    .dd-list{max-height:300px;overflow:auto}
+    .dd-item{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .dd-item:last-child{border-bottom:none}
+    .dd-empty{padding:16px 12px;color:var(--muted);text-align:center}
+    .dd-actions{display:flex;gap:8px;padding:10px 12px;border-top:1px solid rgba(255,255,255,.1)}
 
-    /* HERO (chenarul “Bine ai venit…”) */
-    .hero{
-      margin:12px 0 20px;
-      padding:28px;border-radius:20px;
-      background:linear-gradient(135deg,#2a1600,#1a0e00 60%);
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 0 20px rgba(0,0,0,.4);
-    }
+    /* HERO BANNER */
+    .hero-banner{margin:18px 0 10px;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 8px 30px rgba(0,0,0,.35);background:#0f0900}
+    .hero-banner img{width:100%;height:min(360px, 38vh);object-fit:cover}
+
+    /* HERO */
+    .hero{margin:12px 0 20px;padding:28px;border-radius:20px;background:linear-gradient(135deg,#15002a,#0a0014 60%);border:1px solid rgba(255,255,255,.12);box-shadow:0 0 20px rgba(0,0,0,.4)}
     .hero h1{margin:0;font-size:32px}
     .hero p{color:var(--muted)}
 
@@ -99,34 +72,72 @@
     .section h2{margin:0 0 10px}
 
     /* CARDS */
-    .card{
-      background:var(--card);
-      border:1px solid rgba(255,255,255,.15);
-      padding:14px;border-radius:14px;color:white;
-    }
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.15);padding:14px;border-radius:14px;color:white}
+    .card .muted{color:var(--muted)}
 
-    .pill{
-      background:rgba(255,136,0,.2);border:1px solid rgba(255,136,0,.4);
-      padding:4px 10px;border-radius:20px;font-size:12px;color:var(--brand-2);
-    }
+    .pill{background:rgba(255,0,204,.15);border:1px solid rgba(255,0,204,.35);padding:4px 10px;border-radius:20px;font-size:12px;color:var(--brand-2)}
 
     /* GRID */
     .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 
     /* TABLE */
-    table{
-      width:100%;border-collapse:separate;
-      border-spacing:0;background:var(--card);
-      border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden;
-    }
+    table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden}
     th,td{padding:12px;border-bottom:1px solid rgba(255,255,255,.1)}
     th{background:rgba(255,255,255,.05);color:var(--muted);text-align:left}
 
-    /* FOOTER */
-    .footer{
-      margin-top:40px;border-top:1px solid rgba(255,255,255,.12);
-      padding-top:16px;color:var(--muted);
+    /* ACCORDION (ghiduri) */
+    .accordion{display:flex;flex-direction:column;gap:10px}
+    .acc-item{border:1px solid rgba(255,255,255,.15);border-radius:14px;background:var(--card);overflow:hidden}
+    .acc-head{
+      width:100%;text-align:left;background:transparent;color:var(--text);
+      padding:14px 16px;border:0;cursor:pointer;display:flex;justify-content:space-between;align-items:center
     }
+    .acc-head:hover{background:rgba(255,255,255,.04)}
+    .acc-caret{opacity:.75;transition:transform .15s ease}
+    .acc-body{display:none;padding:0 16px 14px 16px;border-top:1px solid rgba(255,255,255,.08)}
+    .acc-item.open .acc-body{display:block}
+    .acc-item.open .acc-caret{transform:rotate(90deg)}
+
+    /* INPUT COD */
+    .code-box{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .code-input{background:var(--bg-soft);color:var(--text);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:10px 12px;outline:none;min-width:180px}
+    .code-input:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--ring)}
+
+    /* MODAL (ghid complet / preseturi) */
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(0,0,0,.65);
+      display:none;align-items:center;justify-content:center;z-index:1000
+    }
+    .modal-backdrop.show{display:flex}
+    .modal{
+      width:min(840px,94vw);max-height:84vh;overflow:auto;
+      background:var(--card);border:1px solid rgba(255,255,255,.18);
+      border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.6)
+    }
+    .modal header{
+      position:sticky;top:0;background:rgba(31,0,61,.9);backdrop-filter:blur(6px);
+      padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.12);z-index:1
+    }
+    .modal h3{margin:0}
+    .modal .content{padding:16px}
+    .modal .close{
+      float:right;background:transparent;border:0;color:var(--muted);font-size:20px;cursor:pointer
+    }
+    .modal ul{margin-top:6px}
+    .tip{background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.2);padding:10px;border-radius:12px}
+    .kbd{
+      display:inline-block;background:#120022;border:1px solid rgba(255,255,255,.25);
+      padding:0 6px;border-radius:6px;font-family:monospace
+    }
+
+    /* Toast */
+    .toast{
+      position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
+      background:#2a003f;border:1px solid rgba(255,255,255,.15);color:var(--text);
+      padding:10px 14px;border-radius:10px;box-shadow:0 8px 18px rgba(0,0,0,.35);
+      opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:9999
+    }
+    .toast.show{opacity:1}
   </style>
 </head>
 
@@ -136,24 +147,37 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <!-- dacă fișierul tău chiar se numește "logo.PNG.png", lasă așa -->
         <img src="logo.PNG.png" alt="Logo VXC" class="brand-logo-img">
-        VORTEX COMMUNITY
+        V0RT€X C0MMUNITY
       </div>
 
-      <div style="display:flex;gap:10px">
+      <div style="display:flex;gap:10px;position:relative">
         <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank" rel="noopener">💬 Discord</a>
-        <button class="icon-btn" aria-label="Notificări">
-          🔔
-          <span class="badge">3</span>
+
+        <!-- BELL -->
+        <button id="bell" class="icon-btn" aria-label="Notificări" type="button">
+          🔔 <span id="badge" class="badge">0</span>
         </button>
+
+        <!-- DROPDOWN NOTIFICATIONS -->
+        <div id="dd" class="dropdown" aria-label="Notificări">
+          <div class="dd-head">
+            <strong>Notificări</strong>
+            <span id="count" style="color:var(--muted)"></span>
+          </div>
+          <div id="ddList" class="dd-list"></div>
+          <div class="dd-actions">
+            <button class="btn" id="clearAll" type="button">Șterge tot</button>
+            <button class="btn" id="closeDd" type="button">Închide</button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
   <main class="container">
 
-    <!-- ✅ IMAGINEA TA – DEASUPRA CHENARULUI (HERO) -->
+    <!-- BANNER -->
     <figure class="hero-banner" aria-label="VORTEX COMMUNITY banner">
       <img src="banner.jpg.jpg" alt="VORTEX COMMUNITY Banner">
     </figure>
@@ -165,26 +189,82 @@
 
       <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
         <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank" rel="noopener">Intră pe Discord</a>
-        <a class="btn" href="#ghiduri">Vezi ghidurile</a>
+        <button class="btn" type="button" onclick="openGuides()">Vezi ghidurile</button>
       </div>
     </section>
 
     <!-- GHIDURI -->
     <section id="ghiduri" class="section">
-      <h2>Ghiduri de achiziții gaming</h2>
+      <h2>Ghiduri GAMING</h2>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Alegerea jocurilor potrivite</h3>
-          <p style="color:var(--muted)">Cum alegi titlurile potrivite în funcție de stil, timp, buget și nivel.</p>
+      <div class="accordion" role="tablist" aria-label="Lista ghiduri">
+        <!-- Ghid 1 -->
+        <div class="acc-item" id="acc-g1">
+          <!-- Titlul deschide modalul Ghid Complet -->
+          <button class="acc-head" role="tab" aria-controls="g1" aria-expanded="false"
+                  onclick="openModal('guideModal')">
+            🎮 Alegerea jocurilor potrivite
+            <span class="acc-caret">▸</span>
+          </button>
+          <div class="acc-body" id="g1" role="region" aria-labelledby="acc-g1">
+            <p class="muted">Checklist rapid: genurile preferate, timpul pe sesiune, dacă joci solo/co-op, buget lunar, platformă, crossplay, rejucabilitate.</p>
+            <ul>
+              <li>Stabilește <strong>genul</strong> (FPS, sport, strategie, party, story).</li>
+              <li>Verifică <strong>cerințele minime</strong>/performanța pe setup-ul tău.</li>
+              <li>Caută review-uri scurte + gameplay de 5 min, nu trailere.</li>
+            </ul>
+            <button class="btn" type="button" onclick="openModal('guideModal')">Ghid complet</button>
+          </div>
         </div>
-        <div class="card">
-          <h3>Reduceri, oferte și bundle-uri</h3>
-          <p style="color:var(--muted)">Tot ce trebuie să știi pentru a prinde prețuri bune la jocuri.</p>
+
+        <!-- Ghid 2 -->
+        <div class="acc-item" id="acc-g2">
+          <button class="acc-head" role="tab" aria-controls="g2" aria-expanded="false"
+                  onclick="toggleAcc('g2')">
+            💸 Reduceri, oferte & bundle-uri
+            <span class="acc-caret">▸</span>
+          </button>
+          <div class="acc-body" id="g2" role="region" aria-labelledby="acc-g2">
+            <p class="muted">Cum prinzi prețuri bune fără FOMO.</p>
+            <ul>
+              <li>Folosește liste de dorințe și alerte de preț.</li>
+              <li>Verifică <strong>bundle-uri</strong> și abonamente (Game Pass, PS Plus).</li>
+              <li>Nu cumpăra „day-1” dacă nu joci imediat.</li>
+            </ul>
+            <button class="btn" type="button" onclick="copyCode('ADI')">Activează codul ADI (-10%)</button>
+          </div>
         </div>
-        <div class="card">
-          <h3>Optimizarea experienței de gaming</h3>
-          <p style="color:var(--muted)">Setări și trucuri pentru lag mai mic și FPS stabil.</p>
+
+        <!-- Ghid 3 -->
+        <div class="acc-item" id="acc-g3">
+          <!-- Titlul deschide modalul Preseturi -->
+          <button class="acc-head" role="tab" aria-controls="g3" aria-expanded="false"
+                  onclick="openModal('presetsModal')">
+            ⚙️ Optimizarea experienței de gaming
+            <span class="acc-caret">▸</span>
+          </button>
+          <div class="acc-body" id="g3" role="region" aria-labelledby="acc-g3">
+            <p class="muted">Setări rapide pentru FPS stabil și lag scăzut.</p>
+            <ul>
+              <li>Limitează FPS-ul la valoarea stabilă a sistemului tău.</li>
+              <li>Folosește V-Sync/Adaptive Sync doar dacă ai tearing.</li>
+              <li>Prioritizează rezoluție/scaling peste umbre/reflecții ultra.</li>
+            </ul>
+            <button class="btn" type="button" onclick="openModal('presetsModal')">Preseturi recomandate</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CODE BOX (introdu codul ADI) -->
+    <section class="section">
+      <h2>Activează codul tău</h2>
+      <p class="muted">Introdu codul promoțional. Exemplu: <strong>ADI</strong></p>
+      <div class="card">
+        <div class="code-box">
+          <input id="codeInput" class="code-input" type="text" placeholder="Introdu codul (ex: ADI)" aria-label="Cod promoțional">
+          <button class="btn primary" type="button" onclick="activateCode()">Activează</button>
+          <button class="btn" type="button" onclick="copyCode('ADI')">Copiază ADI</button>
         </div>
       </div>
     </section>
@@ -192,35 +272,20 @@
     <!-- OFERTE -->
     <section class="section">
       <h2>Oferte recomandate de comunitate</h2>
-      <p style="color:var(--muted)">Actualizabile manual — pune propriile tale oferte aici.</p>
+      <p style="color:var(--muted)">Folosește codul <strong>ADI</strong> pentru reducere – apasă „Activează codul ADI”.</p>
 
       <table aria-label="Oferte comunitate">
         <thead>
           <tr>
-            <th>Ofertă</th>
-            <th>Magazin</th>
-            <th>Valabil până</th>
-            <th>Link</th>
+            <th>Ofertă</th><th>Magazin</th><th>Valabil până</th><th>Link</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Game Pass 3 luni promo</td>
-            <td>Microsoft Store</td>
-            <td>31 Dec</td>
-            <td><a class="pill" href="#" target="_blank" rel="noopener">Deschide</a></td>
-          </tr>
-          <tr>
-            <td>Bundle Action Pack</td>
-            <td>Humble</td>
-            <td>15 Dec</td>
-            <td><a class="pill" href="#" target="_blank" rel="noopener">Deschide</a></td>
-          </tr>
-          <tr>
-            <td>Gift Card -10%</td>
+            <td>Folosește codul <strong>ADI</strong> — 10% reducere</td>
             <td>Retailer</td>
             <td>Permanent</td>
-            <td><a class="pill" href="#" target="_blank" rel="noopener">Deschide</a></td>
+            <td><button class="pill" onclick="copyCode('ADI')">Activează codul ADI</button></td>
           </tr>
         </tbody>
       </table>
@@ -229,22 +294,196 @@
     <!-- DISCORD -->
     <section class="section">
       <h2>Alătură-te pe Discord</h2>
-      <p style="color:var(--muted)">Discuții zilnice, recomandări, oferte și ajutor în timp real.</p>
-
+      <p class="muted">Discuții zilnice, recomandări, oferte și ajutor în timp real.</p>
       <a class="btn primary" href="https://discord.gg/t57pKqDw" target="_blank" rel="noopener">💬 Intră pe server</a>
     </section>
 
     <!-- FOOTER -->
     <footer class="footer">
-      <small>© <span id="year"></span> VORTEX COMMUNITY • Toate drepturile rezervate</small>
+      <small>© <span id="year"></span> VORTEX COMMUNITY • Copyright</small>
     </footer>
-
   </main>
+
+  <!-- MODAL: GHID COMPLET -->
+  <div id="guideModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
+    <div class="modal">
+      <header>
+        <h3 id="guideTitle">🎮 Ghid complet — Alegerea jocurilor potrivite</h3>
+        <button class="close" aria-label="Închide" onclick="closeModal('guideModal')">✕</button>
+      </header>
+      <div class="content">
+        <div class="tip">
+          <strong>Scurt pe doi:</strong> pornește de la <em>ce te distrează</em> + cât timp ai pe sesiune + unde joacă prietenii.
+        </div>
+
+        <h4>1) Definește profilul de joc</h4>
+        <ul>
+          <li><b>Genuri preferate:</b> FPS / Sport / Strategie / Racing / Roguelike / Story-rich.</li>
+          <li><b>Mod:</b> Solo, Co-op, Multiplayer competitiv, Party.</li>
+          <li><b>Timp / sesiune:</b> 15-30 min (arcade), 1-2 h (story/co-op), 3h+ (raid/competitive).</li>
+          <li><b>Platforma:</b> PC, PlayStation, Xbox, Switch; există <i>crossplay</i>?</li>
+          <li><b>Buget lunar</b> & rejucabilitate (live service vs single-player scurt).</li>
+        </ul>
+
+        <h4>2) Filtrare rapidă</h4>
+        <ul>
+          <li>Verifică <b>cerințele minime</b> & clipuri de <b>5 minute de gameplay</b>, nu trailere.</li>
+          <li>Caută recenzii „<i>recent</i>” pentru starea actuală (bug-uri, servere, meta).</li>
+          <li>Folosește liste de dorințe și așteaptă reducerile mari (sărbători, summer sale).</li>
+        </ul>
+
+        <h4>3) Decizia</h4>
+        <ul>
+          <li>Ai prieteni acolo? +1 punct.</li>
+          <li>Poți închide jocul în 20–30 min fără penalizări? +1 punct.</li>
+          <li>Există demo/Free weekend? Testează înainte.</li>
+        </ul>
+
+        <div class="tip">Apasă <span class="kbd">CTRL</span> + <span class="kbd">D</span> să salvezi pagina la favorite ca checklist.</div>
+
+        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn" onclick="copyCode('ADI')">Aplică ADI (-10%)</button>
+          <button class="btn primary" onclick="closeModal('guideModal')">Am înțeles</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PRESETURI RECOMANDATE -->
+  <div id="presetsModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="presetsTitle">
+    <div class="modal">
+      <header>
+        <h3 id="presetsTitle">⚙️ Preseturi recomandate — FPS stabil & input lag mic</h3>
+        <button class="close" aria-label="Închide" onclick="closeModal('presetsModal')">✕</button>
+      </header>
+      <div class="content">
+        <h4>Preset „Competitive” (PC modest → high FPS)</h4>
+        <ul>
+          <li>Rezoluție nativă sau 90–100% render scale; DLSS/FSR pe „Quality”.</li>
+          <li>Umbre, reflexii, volumetrics: <b>Low</b> / Off.</li>
+          <li>Texturi: <b>Medium</b> (nu afectează mult FPS, dar arată OK).</li>
+          <li>V-Sync: <b>Off</b>; Frame limit = valoarea stabilă (ex. 120).</li>
+        </ul>
+
+        <h4>Preset „Cinematic fluid” (single-player)</h4>
+        <ul>
+          <li>DLSS/FSR „Quality”, rezoluție nativă.</li>
+          <li>Umbre medii, ambient occlusion on, motion blur ușor (dacă îți place).</li>
+          <li>V-Sync: <b>On</b> doar dacă vezi tearing; altfel Off + cap FPS stabil.</li>
+        </ul>
+
+        <h4>Rețetă anti-lag</h4>
+        <ul>
+          <li>Fullscreen exclusiv. Dezactivează overlay-uri grele.</li>
+          <li>Sincronizează rata de refresh cu plafonul de FPS (ex. 144Hz → 141–143 FPS limit).</li>
+          <li>Driver grafic la zi; energie pe „High performance”.</li>
+        </ul>
+
+        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn" onclick="copyCode('ADI')">Aplică ADI (-10%)</button>
+          <button class="btn primary" onclick="closeModal('presetsModal')">Închide</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 
+    /* --------- NOTIFICATIONS --------- */
+    const bell = document.getElementById('bell');
+    const dd   = document.getElementById('dd');
+    const ddList = document.getElementById('ddList');
+    const badge = document.getElementById('badge');
+    const count = document.getElementById('count');
+    const clearAllBtn = document.getElementById('clearAll');
+    const closeDdBtn = document.getElementById('closeDd');
+
+    let notifications = [
+      { id: 1, text: 'Bine ai venit în VORTEX COMMUNITY!' },
+      { id: 2, text: 'Folosește codul ADI – 10% reducere.' },
+      { id: 3, text: 'Intră pe Discord pentru oferte zilnice.' },
+    ];
+
+    function renderNotifs(){
+      ddList.innerHTML = '';
+      if(notifications.length === 0){
+        ddList.innerHTML = '<div class="dd-empty">Nu ai notificări.</div>';
+      } else {
+        notifications.forEach(n=>{
+          const row = document.createElement('div');
+          row.className = 'dd-item';
+          row.innerHTML = `<div style="flex:1">${n.text}</div>
+                           <button class="btn" type="button" onclick="removeNotif(${n.id})">Șterge</button>`;
+          ddList.appendChild(row);
+        });
+      }
+      badge.textContent = notifications.length;
+      count.textContent = notifications.length + (notifications.length===1?' nouă':' noi');
+    }
+    function removeNotif(id){ notifications = notifications.filter(n=>n.id !== id); renderNotifs(); }
+    clearAllBtn.addEventListener('click', ()=>{ notifications = []; renderNotifs(); });
+    closeDdBtn.addEventListener('click', ()=> dd.classList.remove('show'));
+    bell.addEventListener('click', ()=>{ dd.classList.toggle('show'); renderNotifs(); });
+    document.addEventListener('click', (e)=>{ if(!dd.contains(e.target) && !bell.contains(e.target)) dd.classList.remove('show'); });
+
+    /* --------- TOAST + CODE --------- */
+    function showToast(msg){
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'), 2000);
+    }
+    function copyCode(code){
+      if (navigator.clipboard?.writeText){
+        navigator.clipboard.writeText(code).then(()=> showToast('Cod copiat: ' + code + ' ✅'))
+                                           .catch(()=> showToast('Cod: ' + code));
+      } else { showToast('Cod: ' + code); }
+    }
+    function activateCode(){
+      const v = (document.getElementById('codeInput').value || '').trim().toUpperCase();
+      if(!v){ showToast('Introdu un cod.'); return; }
+      if(v === 'ADI'){ copyCode('ADI'); showToast('Cod ADI activat! ✅'); }
+      else { showToast('Cod invalid.'); }
+    }
+
+    /* --------- ACCORDION helpers (pentru itemele care rămân accordion) --------- */
+    function toggleAcc(id){
+      const item = document.querySelector(`#acc-${id}`);
+      document.querySelectorAll('.acc-item').forEach(i=>{ if(i!==item) i.classList.remove('open'); });
+      item.classList.toggle('open');
+      const head = item.querySelector('.acc-head');
+      head?.setAttribute('aria-expanded', item.classList.contains('open'));
+    }
+    function openGuides(){
+      const sec = document.getElementById('ghiduri');
+      sec.scrollIntoView({behavior:'smooth', block:'start'});
+      // deschide vizual primul item (opțional)
+      document.querySelector('#acc-g1')?.classList.add('open');
+    }
+
+    /* --------- MODALS --------- */
+    function openModal(id){
+      document.getElementById(id)?.classList.add('show');
+      document.addEventListener('keydown', escClose);
+    }
+    function closeModal(id){
+      document.getElementById(id)?.classList.remove('show');
+      document.removeEventListener('keydown', escClose);
+    }
+    function escClose(e){
+      if(e.key === 'Escape'){
+        document.querySelectorAll('.modal-backdrop.show').forEach(m=>m.classList.remove('show'));
+      }
+    }
+    // închidere la click pe backdrop
+    document.querySelectorAll('.modal-backdrop').forEach(b=>{
+      b.addEventListener('click', (e)=>{ if(e.target === b) b.classList.remove('show'); });
+    });
+
+    renderNotifs();
+  </script>
 </body>
 </html>
-
